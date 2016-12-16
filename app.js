@@ -44,54 +44,60 @@ app.post('/upload', function (req, res) {
 });
 
 app.get('/image/:imageName', function (req, res) {
-	var pathname = url.parse(req.url).pathname;
-	var isImage = 0,
-		contentType, fileToLoad;
-	var extension = pathname.split('.').pop();
-	var file = "." + pathname;
-	var dirs = pathname.split('/');
-	if (pathname == "/") {
-		file = "index.html";
-		contentType = 'text/html';
-		isImage = 2;
-	} else if (dirs[1] != "hidden" && pathname != "/app.js") {
-		switch (extension) {
-		case "jpg":
-			contentType = 'image/jpg';
-			isImage = 1;
-			break;
-		case "png":
-			contentType = 'image/png';
-			isImage = 1;
-			break;
-		case "js":
-			contentType = 'text/javascript';
-			isImage = 2;
-			break;
-		case "css":
-			contentType = 'text/css';
-			isImage = 2;
-			break;
-		case "html":
-			contentType = 'text/html';
-			isImage = 2;
-			break;
-		}
-	}
-	if (isImage == 1) {
-		fileToLoad = fs.readFileSync(file);
-		res.writeHead(200, {
-			'Content-Type': contentType
-		});
-		res.end(fileToLoad, 'binary');
-	} else if (isImage == 2) {
-		fileToLoad = fs.readFileSync(file, "utf8");
-		res.writeHead(200, {
-			'Content-Type': contentType
-		});
-		res.write(fileToLoad);
-		res.end();
-	}
+	//	var pathname = url.parse(req.url).pathname;
+	//	var isImage = 0,
+	//		contentType, fileToLoad;
+	//	var extension = pathname.split('.').pop();
+	//	var file = "." + pathname;
+	//	var dirs = pathname.split('/');
+	//	if (pathname == "/") {
+	//		file = "index.html";
+	//		contentType = 'text/html';
+	//		isImage = 2;
+	//	} else if (dirs[1] != "hidden" && pathname != "/app.js") {
+	//		switch (extension) {
+	//		case "jpg":
+	//			contentType = 'image/jpg';
+	//			isImage = 1;
+	//			break;
+	//		case "png":
+	//			contentType = 'image/png';
+	//			isImage = 1;
+	//			break;
+	//		case "js":
+	//			contentType = 'text/javascript';
+	//			isImage = 2;
+	//			break;
+	//		case "css":
+	//			contentType = 'text/css';
+	//			isImage = 2;
+	//			break;
+	//		case "html":
+	//			contentType = 'text/html';
+	//			isImage = 2;
+	//			break;
+	//		}
+	//	}	
+	//	if (isImage == 1) {
+	//		fileToLoad = fs.readFileSync(file);
+	//		res.writeHead(200, {
+	//			'Content-Type': contentType
+	//		});
+	//		res.end(fileToLoad, 'binary');
+	//	} else if (isImage == 2) {
+	//		fileToLoad = fs.readFileSync(file, "utf8");
+	//		res.writeHead(200, {
+	//			'Content-Type': contentType
+	//		});
+	//		res.write(fileToLoad);
+	//		res.end();
+	//	}
+	var file = "." + "/uploads/" + req.params.imageName;
+	fileToLoad = fs.readFileSync(file);
+	res.writeHead(200, {
+		'Content-Type': contentType
+	});
+	res.end(fileToLoad, 'binary');
 });
 
 var server = app.listen(port, function () {
