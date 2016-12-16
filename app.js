@@ -6,6 +6,7 @@ var fs = require('fs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+var port = process.env.PORT || 8080;
 app.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname, 'views/index.html'));
 });
@@ -93,6 +94,6 @@ app.get('/image/:imageName', function (req, res) {
 	}
 });
 
-var server = app.listen(3000, function () {
-	console.log('Server listening on port 3000');
+var server = app.listen(port, function () {
+	console.log('Server listening on port ' + port);
 });
