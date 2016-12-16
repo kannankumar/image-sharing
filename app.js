@@ -100,6 +100,25 @@ app.get('/image/:imageName', function (req, res) {
 	res.end(fileToLoad, 'binary');
 });
 
+app.get('/images', function (req, res) {
+	var uploadDir = path.join(__dirname, '/public/uploads'),
+		files = [],
+		i;
+
+	fs.readdir(uploadDir, function (err, list) {
+		for (i = 0; i < list.length; i++) {
+			//store the file name into the array files            
+			files.push('/uploads/' + encodeURI(list[i]));
+		}
+		res.writeHead(200, {
+			'Content-type': 'text/html'
+		});
+		res.end(
+			files.toString()
+		);
+	});
+});
+
 var server = app.listen(port, function () {
 	console.log('Server listening on port ' + port);
 });

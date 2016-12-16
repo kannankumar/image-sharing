@@ -4,9 +4,30 @@ $('.upload-btn').on('click', function () {
 	$('.progress-bar').text('0%');
 	$('.progress-bar').width('0%');
 });
+
+
 $('.show-image-btn').on('click', function () {
 	var imgName = $('#image-name-input').val();
 	$('#image-container').attr('src', location.href + 'image/' + imgName);
+});
+
+$('.fetch-btn').on('click', function () {
+	$.ajax({
+		url: '/images',
+		type: 'GET',
+		processData: false,
+		contentType: false,
+		success: function (data) {
+			var files = data.split(",");
+			console.log(files);
+			console.log('Fetched all image links successfully !\n');
+			$(".gallery_image_container").html("");
+
+			for (var i = 0; i < files.length; i++) {
+				$(".gallery_image_container").append('<img src=' + files[i] + ' class="gallery-thumbs" width="200px" height="200px"/>');
+			}
+		}
+	});
 });
 
 $('#upload-input').on('change', function () {
@@ -34,7 +55,7 @@ $('#upload-input').on('change', function () {
 			contentType: false,
 			success: function (data) {
 				$('.image-share-container').show();
-				$('#image-link').val(location.href + 'image/' + file.name);
+				$('#image-link').val(location.href + 'uploads/' + file.name);
 				console.log('upload successful!\n' + data);
 			},
 			xhr: function () {
