@@ -1,5 +1,6 @@
 $('.image-share-container').hide();
 $('.upload-btn').on('click', function () {
+	$('.image-share-container').hide();
 	$('#upload-input').click();
 	$('.progress-bar').text('0%');
 	$('.progress-bar').width('0%');
@@ -8,7 +9,7 @@ $('.upload-btn').on('click', function () {
 
 $('.show-image-btn').on('click', function () {
 	var imgName = $('#image-name-input').val();
-	$('#image-container').attr('src', location.href + 'image/' + imgName);
+	$('#image-container').attr('src', location.href + 'uploads/' + imgName);
 });
 
 $('.fetch-btn').on('click', function () {
