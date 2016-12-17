@@ -64,10 +64,17 @@
 
 	<input id="upload-input" type="file" name="uploads[]" multiple="multiple">
 	</br>
-	<input id="image-name-input" type="text" name="imageName">
-	</br>
-	<button class="btn btn-lg show-image-btn" type="button">Show image</button>
-	<img id='image-container' src='' width=500px/>
+	<div class="col-xs-12">
+		<span class="glyphicon glyphicons-pictures"></span>
+		<h2 style="color:white">Search Images</h2>
+	</div>
+	<div class="col-xs-12" style="margin-bottom:50px;margin-top:10px;">
+		<input id="image-name-input" type="text" name="imageName" style="height:50px">
+		<button class="btn btn-lg show-image-btn" type="button">Show image</button>
+	</div>
+	<div class="col-xs-12">
+		<img id='image-container' src='' width=700px/>
+	</div>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="javascripts/upload.js"></script>

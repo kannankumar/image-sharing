@@ -6,6 +6,8 @@
 html,
 body {
 	height: 100%;
+	overflow: hidden;
+	overflow-y: visible;
 	background-color: #4791D2;
 }
 
@@ -77,4 +79,9 @@ img.gallery-thumbs {
 	/* border: 10px solid lightgray; */
 	margin: 10px;
 	box-shadow: 0 0 15px gray;
+}
+
+img#image-container {
+	border: 10px solid white;
+	box-shadow: 0 0 20px gray;
 }

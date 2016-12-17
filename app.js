@@ -28,6 +28,7 @@ app.post('/upload', function (req, res) {
 	form.on('file', function (field, file) {
 		//imgCounter--;
 		//var fileName = imgCounter + file.name;
+		console.log(file.name);
 		fs.rename(file.path, path.join(form.uploadDir, file.name));
 	});
 
