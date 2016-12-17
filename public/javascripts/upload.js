@@ -57,8 +57,10 @@ $('#upload-input').on('change', function () {
 			success: function (data) {
 				$('.image-share-container').show();
 				$('#image-link').val(location.href + 'uploads/' + file.name);
-				console.log('upload successful!\n' + data);
+				console.log('upload successful!\n');
+				console.log(data.split(' ')[0]);
 			},
+
 			xhr: function () {
 				// create an XMLHttpRequest
 				var xhr = new XMLHttpRequest();
